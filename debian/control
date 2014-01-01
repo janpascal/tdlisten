@@ -2,7 +2,8 @@ Source: tdlisten
 Section: utils
 Priority: extra
 Maintainer: Jan-Pascal van Best <janpascal@vanbest.org>
-Build-Depends: debhelper (>= 8.0.0), libtelldus-core-dev (>= 2.1.1)
+Build-Depends: debhelper (>= 9.0.0), libtelldus-core-dev (>= 2.1.1),
+ hardening-wrapper (>= 2.2)
 Standards-Version: 3.9.5
 Vcs-Git: https://github.com/janpascal/tdlisten.git
 Vcs-Browser: https://github.com/janpascal/tdlisten
@@ -15,4 +16,4 @@ Description: Tool to receive events from TellStick devices
  tdlisten is a tool to listen for events from Tellstick devices.
  It can be used in scripts to react on events from TellStick-
  compatible remote control, or when a device state is changed
- from TelldusCenter.
+ from TelldusCenter
