@@ -1,0 +1,73 @@
+.TH tdlisten 1 2014-01-01
+
+.SH NAME
+tdlisten \- a command line utility to listen for events from a Telldus TellStick
+
+.SH SYNOPSIS
+.B tdlisten [options]
+
+.SH DESCRIPTION
+.B tdlisten
+is a tool to receive events from devices configured
+with a Telldus TellStick. 
+.B tdlisten
+waits for events from the device selected using the
+.B -d
+command line option and prints the new device status
+to standard output. See 
+.B NOTES
+for the device status codes.
+
+.SH OPTIONS
+.TP 10
+.B \-v 
+verbose
+.TP
+.B \-c
+continuous (do not exit when event is received)
+.TP
+.B \-d device
+select device
+.TP
+.B \-h
+help
+
+.SH NOTES
+Device state codes:
+.TP 18
+TELLSTICK_TURNON
+1
+.TP
+TELLSTICK_TURNOFF
+2
+.TP
+TELLSTICK_BELL
+4
+.TP
+TELLSTICK_TOGGLE
+8
+.TP
+TELLSTICK_DIM
+16
+.TP
+TELLSTICK_LEARN
+32
+.TP
+TELLSTICK_EXECUTE
+64
+.TP
+TELLSTICK_UP
+128
+.TP
+TELLSTICK_DOWN
+256
+.TP
+TELLSTICK_STOP
+512
+
+.SH SEE ALSO
+.BR tdtool (1)
+
+.SH AUTHOR
+Jan-Pascal van Best <janpascal@vanbest.org>
+
