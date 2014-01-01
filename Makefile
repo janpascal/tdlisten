@@ -3,5 +3,5 @@ tdlisten: tdlisten.c
 	gcc -o tdlisten $(LIBS) tdlisten.c
 
 install: tdlisten
-	install tdlisten $(DESTDIR)/usr/bin
+	install -D tdlisten $(DESTDIR)/usr/bin
 
