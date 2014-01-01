@@ -1,3 +1,20 @@
+/* 
+    Copyright 2014 Jan-Pascal van Best <janpascal@vanbest.org>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -7,9 +24,11 @@
 
 int done=0;
 
+#define ALL_DEVICES -1
+
 int verbose=0;
 int continuous=0;
-int device=-1;
+int device=ALL_DEVICES;
 
 void WINAPI handler(int deviceId, int method, const char *data, int callbackId, void *context) {
     if(verbose) {
@@ -17,7 +36,7 @@ void WINAPI handler(int deviceId, int method, const char *data, int callbackId, 
         printf("data: \"%s\"\n", data);
         printf("callbackId %d\n", callbackId);
     } else {
-        if(deviceId==device) {
+        if(device==ALL_DEVICES || deviceId==device) {
             printf("%d", method);
         }
     }
@@ -99,7 +118,11 @@ int main(int argc, char* argv[]) {
     handle_options(argc, argv);
 
     if(verbose) {
-        printf("Waiting for events from device %d\n", device);
+        if(device==ALL_DEVICES) {
+            printf("Waiting for events from all devices\n");
+        } else {
+            printf("Waiting for events from device %d\n", device);
+        }
     }
 
     int callbackId = tdRegisterDeviceEvent(handler, NULL);
