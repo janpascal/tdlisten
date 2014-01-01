@@ -28,6 +28,7 @@ int done=0;
 
 int verbose=0;
 int continuous=0;
+int show_id=0;
 int device=ALL_DEVICES;
 
 void WINAPI handler(int deviceId, int method, const char *data, int callbackId, void *context) {
@@ -35,9 +36,15 @@ void WINAPI handler(int deviceId, int method, const char *data, int callbackId, 
         printf("deviceId %d, method %d\n", deviceId, method);
         printf("data: \"%s\"\n", data);
         printf("callbackId %d\n", callbackId);
+        printf("\n");
     } else {
         if(device==ALL_DEVICES || deviceId==device) {
-            printf("%d", method);
+            if(show_id) printf("%d: ", deviceId);
+            if(method==TELLSTICK_DIM) {
+                printf("%d (%s)\n", method, data);
+            } else {
+                printf("%d\n", method);
+            }
         }
     }
     if(!continuous) done=1;
@@ -66,6 +73,7 @@ int find_device(char *device) {
 void usage() {
     fprintf(stderr, "Usage: tdlisten [-c] [-v] [-d device]\n");
     fprintf(stderr, "  -c\t\tcontinous (do not exit when event received)\n");
+    fprintf(stderr, "  -i\t\tinclude device id in output\n");
     fprintf(stderr, "  -v\t\tverbose\n");
     fprintf(stderr, "  -d device\tselect device by name or id\n");
     fprintf(stderr, "  -h\t\tshow this help text\n");
@@ -87,13 +95,16 @@ void usage() {
 
 void handle_options(int argc, char* argv[]) {
     int opt;
-    while ((opt = getopt(argc, argv, "cd:hv")) != -1) {
+    while ((opt = getopt(argc, argv, "cd:hiv")) != -1) {
         switch (opt) {
         case 'v':
             verbose++;
             break;
         case 'c':
             continuous=1;
+            break;
+        case 'i':
+            show_id=1;
             break;
         case 'd':
             device=find_device(optarg);
@@ -126,6 +137,7 @@ int main(int argc, char* argv[]) {
     }
 
     int callbackId = tdRegisterDeviceEvent(handler, NULL);
+    if(verbose>=2) printf("Registered device event handler, callbackId=%d\n",callbackId);
 
     // Wait for event
     for(;;) {
