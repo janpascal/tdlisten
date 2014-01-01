@@ -1,6 +1,6 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: tdlisten
-#Source: <url://example.com>
+Source: https://github.com/janpascal/tdlisten
 
 Files: *
 Copyright: 2014 Jan-Pascal van Best <janpascal@vanbest.org>

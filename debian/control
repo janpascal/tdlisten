@@ -3,9 +3,9 @@ Section: utils
 Priority: extra
 Maintainer: Jan-Pascal van Best <janpascal@vanbest.org>
 Build-Depends: debhelper (>= 8.0.0), libtelldus-core-dev (>= 2.1.1)
-Standards-Version: 3.9.3
-#Vcs-Git: git://git.debian.org/collab-maint/tdlisten.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/tdlisten.git;a=summary
+Standards-Version: 3.9.5
+Vcs-Git: https://github.com/janpascal/tdlisten.git
+Vcs-Browser: https://github.com/janpascal/tdlisten
 
 Package: tdlisten
 Architecture: any
