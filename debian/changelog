@@ -1,3 +1,9 @@
+tdlisten (0.2-1) unstable; urgency=low
+
+  * New upstream version (0.2)
+
+ -- Jan-Pascal van Best <janpascal@vanbest.org>  Wed, 01 Jan 2014 16:18:14 +0100
+
 tdlisten (0.1-1) unstable; urgency=low
 
   * Initial release
