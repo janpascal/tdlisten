@@ -16,7 +16,12 @@ waits for events from the device selected using the
 command line option and prints the new device status
 to standard output. See 
 .B NOTES
-for the device status codes.
+for the device status codes. 
+For TELLSTICK_DIM events (status code=16), the current value is output after the
+new status code, between parentheses.
+If no device is selected using the
+.B \-d
+option, events from all devices are shown.
 
 .SH OPTIONS
 .TP 10
@@ -26,11 +31,29 @@ verbose
 .B \-c
 continuous (do not exit when event is received)
 .TP
+.B \-i
+id (output device id for every receiver event)
+.TP
 .B \-d device
 select device
 .TP
 .B \-h
 help
+
+.SH EXAMPLES
+.nf
+$ tdlisten -d "Doorbell"
+.fi
+.br
+Listen for a single event from the device named "Doorbell", print
+the new device state, and exit.
+.P
+.nf
+$ tdlisten -c -i
+.fi
+.br
+Listen for events from all devices, do not halt after first event.
+Output the device id for each event (format: <id>: <method>).
 
 .SH NOTES
 Device state codes:
