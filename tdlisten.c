@@ -47,6 +47,7 @@ void WINAPI handler(int deviceId, int method, const char *data, int callbackId, 
             }
         }
     }
+    fflush(stdout);
     if(!continuous) done=1;
 }
 
